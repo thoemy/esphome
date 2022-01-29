@@ -154,6 +154,8 @@ class APIServerConnectionBase : public ProtoService {
 #ifdef USE_MEDIA_PLAYER
   virtual void on_media_player_command_request(const MediaPlayerCommandRequest &value){};
 #endif
+  bool send_list_entities_triggers_response(const ListEntitiesTriggersResponse &msg);
+  bool send_homeassistant_trigger_response(const HomeassistantTriggerResponse &msg);
  protected:
   bool read_message(uint32_t msg_size, uint32_t msg_type, uint8_t *msg_data) override;
 };

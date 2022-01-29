@@ -1098,3 +1098,21 @@ message MediaPlayerCommandRequest {
   bool has_media_url = 6;
   string media_url = 7;
 }
+
+// ==================== HOMEASSISTANT.TRIGGER ====================
+message ListEntitiesTriggersResponse {
+  option (id) = 98;
+  option (source) = SOURCE_SERVER;
+  // option (ifdef) = "USE_TRIGGER";
+
+  fixed32 key = 1;
+  string trigger = 2;
+}
+message HomeassistantTriggerResponse {
+  option (id) = 99;
+  option (source) = SOURCE_SERVER;
+  // option (ifdef) = "USE_TRIGGER";
+  option (no_delay) = true;
+
+  string trigger = 1;
+}
