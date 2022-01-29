@@ -75,6 +75,26 @@ service APIConnection {
 // If anything in this initial process fails, the connection must immediately closed
 // by both sides and _no_ disconnection message is to be sent.
 
+
+// ==================== HOMEASSISTANT.TRIGGER ====================
+message ListEntitiesTriggersResponse {
+  option (id) = 98;
+  option (source) = SOURCE_SERVER;
+  // option (ifdef) = "USE_TRIGGER";
+
+  fixed32 key = 1;
+  string trigger = 2;
+}
+message HomeassistantTriggerResponse {
+  option (id) = 99;
+  option (source) = SOURCE_SERVER;
+  // option (ifdef) = "USE_TRIGGER";
+  option (no_delay) = true;
+
+  string trigger = 1;
+}
+
+
 // Message sent at the beginning of each connection
 // Can only be sent by the client and only at the beginning of the connection
 message HelloRequest {
