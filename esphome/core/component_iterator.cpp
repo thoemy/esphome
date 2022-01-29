@@ -157,6 +157,14 @@ void ComponentIterator::advance() {
         success = this->on_service(service);
       }
       break;
+    case IteratorState::TRIGGER:
+      if (this->at_ >= api::global_api_server->get_user_triggers().size()) {
+        advance_platform = true;
+      } else {
+        auto *trigger = api::global_api_server->get_user_triggers()[this->at_];
+        success = this->on_trigger(trigger);
+      }
+      break;
 #endif
 #ifdef USE_ESP32_CAMERA
     case IteratorState::CAMERA:
@@ -265,6 +273,7 @@ bool ComponentIterator::on_end() { return true; }
 bool ComponentIterator::on_begin() { return true; }
 #ifdef USE_API
 bool ComponentIterator::on_service(api::UserServiceDescriptor *service) { return true; }
+bool ComponentIterator::on_trigger(api::UserTriggerDescriptor *trigger) { return true; }
 #endif
 #ifdef USE_ESP32_CAMERA
 bool ComponentIterator::on_camera(esp32_camera::ESP32Camera *camera) { return true; }
