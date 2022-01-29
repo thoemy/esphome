@@ -13,6 +13,7 @@ namespace esphome {
 #ifdef USE_API
 namespace api {
 class UserServiceDescriptor;
+class UserTriggerDescriptor;
 }  // namespace api
 #endif
 
@@ -47,6 +48,7 @@ class ComponentIterator {
 #endif
 #ifdef USE_API
   virtual bool on_service(api::UserServiceDescriptor *service);
+  virtual bool on_trigger(api::UserTriggerDescriptor *trigger);
 #endif
 #ifdef USE_ESP32_CAMERA
   virtual bool on_camera(esp32_camera::ESP32Camera *camera);
@@ -98,6 +100,7 @@ class ComponentIterator {
 #endif
 #ifdef USE_API
     SERVICE,
+    TRIGGER,
 #endif
 #ifdef USE_ESP32_CAMERA
     CAMERA,

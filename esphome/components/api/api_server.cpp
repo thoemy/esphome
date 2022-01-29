@@ -291,6 +291,11 @@ void APIServer::send_homeassistant_service_call(const HomeassistantServiceRespon
     client->send_homeassistant_service_call(call);
   }
 }
+void APIServer::send_homeassistant_trigger(const HomeassistantTriggerResponse &call) {
+  for (auto &client : this->clients_) {
+    client->send_homeassistant_trigger(call);
+  }
+}
 #ifdef USE_BLUETOOTH_PROXY
 void APIServer::send_bluetooth_le_advertisement(const BluetoothLEAdvertisementResponse &call) {
   for (auto &client : this->clients_) {
